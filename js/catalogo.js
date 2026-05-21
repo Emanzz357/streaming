@@ -20,15 +20,15 @@ fetch('../xml/catalogo.xml')
         });
 
         elencoFilm.forEach(film => {
-            const estructuraFilm = `
-                <div class="element">
+            const strutturaFilm = `
+                <a href="film.html?titolo=${encodeURIComponent(film.titolo)}" class="element">
                     <div class="film">
                         <img src="${film.poster}">
                     </div>
                     <span class="titolo">${film.titolo}</span>
-                </div>`;
+                </a>`;
 
-            main.innerHTML += estructuraFilm;
+            main.innerHTML += strutturaFilm;
         });
     })
     .catch(err => {
