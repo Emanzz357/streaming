@@ -1,0 +1,126 @@
+<!--
+    ============================================================
+    DTD - Document Type Definition
+    File:    catalogo.dtd
+    Scopo:   Validazione strutturale del file catalogo.xml
+    Progetto: Piattaforma Streaming
+
+    La DTD definisce QUALI elementi esistono, in QUALE ORDINE
+    devono apparire e quali ATTRIBUTI sono ammessi.
+    Non può però vincolare i tipi di dato (per quello c'è l'XSD).
+    ============================================================
+-->
+
+<!--
+    ELEMENTO RADICE: "catalogo"
+    Deve contenere uno o più elementi "film".
+    Il simbolo "+" significa "uno o più" (almeno 1 obbligatorio).
+-->
+<!ELEMENT catalogo (film+)>
+
+<!--
+    ELEMENTO: "film"
+    Sequenza ordinata di sotto-elementi: devono apparire
+    esattamente nell'ordine indicato, tutti obbligatori (uno ciascuno).
+    La virgola "," separa elementi in sequenza.
+-->
+<!ELEMENT film (
+    titolo,
+    anno,
+    genere,
+    durata,
+    valutazione,
+    trama,
+    regista,
+    attori,
+    budget,
+    incassi,
+    classificazione,
+    trailer,
+    poster,
+    tmdb_id,
+    visualizzazioni_totali
+)>
+
+<!--
+    ATTRIBUTO: "id" dell'elemento "film"
+    Tipo ID: garantisce che il valore sia univoco nell'intero documento XML.
+    #REQUIRED: l'attributo è obbligatorio, ogni film deve avere un id.
+-->
+<!ATTLIST film
+    id ID #REQUIRED
+>
+
+<!-- Elementi con contenuto testuale semplice (#PCDATA = Parsed Character Data) -->
+
+<!-- Titolo del film: testo libero -->
+<!ELEMENT titolo           (#PCDATA)>
+
+<!-- Anno di uscita: testo (i vincoli numerici sono nell'XSD) -->
+<!ELEMENT anno             (#PCDATA)>
+
+<!-- Genere del film: testo libero (es. Action, Noir, Fantascienza...) -->
+<!ELEMENT genere           (#PCDATA)>
+
+<!-- Durata in minuti: testo (i vincoli numerici sono nell'XSD) -->
+<!ELEMENT durata           (#PCDATA)>
+
+<!-- Valutazione media: testo (i vincoli 0.0-5.0 sono nell'XSD) -->
+<!ELEMENT valutazione      (#PCDATA)>
+
+<!-- Trama del film: testo libero -->
+<!ELEMENT trama            (#PCDATA)>
+
+<!-- Nome del regista: testo libero -->
+<!ELEMENT regista          (#PCDATA)>
+
+<!-- Budget in dollari: testo (vincoli numerici nell'XSD) -->
+<!ELEMENT budget           (#PCDATA)>
+
+<!-- Incassi totali in dollari: testo -->
+<!ELEMENT incassi          (#PCDATA)>
+
+<!-- Classificazione per età: testo (valori enumerati nell'XSD) -->
+<!ELEMENT classificazione  (#PCDATA)>
+
+<!-- URL del trailer: testo (validato come URI nell'XSD) -->
+<!ELEMENT trailer          (#PCDATA)>
+
+<!-- URL del poster: testo (validato come URI nell'XSD) -->
+<!ELEMENT poster           (#PCDATA)>
+
+<!-- ID del film nel database TMDb: testo (intero nell'XSD) -->
+<!ELEMENT tmdb_id          (#PCDATA)>
+
+<!--
+    Contatore visualizzazioni: numero intero che viene
+    incrementato dal PHP ad ogni apertura della pagina del film.
+    Testo nella DTD, intero >= 0 nell'XSD.
+-->
+<!ELEMENT visualizzazioni_totali (#PCDATA)>
+
+<!--
+    ELEMENTO: "attori"
+    Contenitore che deve avere almeno un elemento "attore".
+    "+" = uno o più elementi attore obbligatori.
+-->
+<!ELEMENT attori (attore+)>
+
+<!--
+    ELEMENTO: "attore"
+    Contiene il nome dell'attore come testo.
+    Ha un attributo obbligatorio "ruolo".
+-->
+<!ELEMENT attore (#PCDATA)>
+
+<!--
+    ATTRIBUTO: "ruolo" dell'elemento "attore"
+    Tipo enumerazione: accetta SOLO i valori indicati tra parentesi.
+    protagonista = ruolo principale
+    secondario   = ruolo di supporto
+    comparsa     = apparizione breve
+    #REQUIRED: ogni attore deve specificare il suo ruolo.
+-->
+<!ATTLIST attore
+    ruolo (protagonista|secondario|comparsa) #REQUIRED
+>

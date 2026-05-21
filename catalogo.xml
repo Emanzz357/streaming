@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Collegamento alla DTD: il parser XML userà catalogo.dtd
+    per validare la struttura di questo documento.
+    "catalogo" è il nome dell'elemento radice dichiarato nella DTD.
+    "SYSTEM" indica che il file DTD è locale (non una DTD pubblica).
+-->
+<!DOCTYPE catalogo SYSTEM "catalogo.dtd">
+
+<!--
+    Elemento radice del documento.
+    xmlns:xsi: dichiara il namespace per XML Schema Instance,
+    necessario per usare l'attributo xsi:noNamespaceSchemaLocation.
+    xsi:noNamespaceSchemaLocation: indica al validatore quale file XSD usare.
+-->
+<catalogo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="catalogo.xsd">
+
+    <!--
+        ==========================================================
+        FILM F01 — Inception
+        Genere: Fantascienza | Valutazione: 4.8 (alta, > 4)
+        Copre le query: XPath 2 (val > 4), XPath 4 (id F01)
+        ==========================================================
+    -->
+    <!-- Ogni film ha un attributo "id" univoco nel formato F + 2 cifre -->
+    <film id="F01">
+        <!-- Titolo del film, stringa tra 1 e 200 caratteri (vincolo XSD) -->
+        <titolo>Inception</titolo>
+        <!-- Anno di uscita, intero tra 1888 e 2100 (vincolo XSD) -->
+        <anno>2010</anno>
+        <!-- Genere cinematografico, testo libero -->
+        <genere>Fantascienza</genere>
+        <!-- Durata in minuti, intero tra 1 e 600 (vincolo XSD) -->
+        <durata>148</durata>
+        <!-- Valutazione media, decimale tra 0.0 e 5.0 con 1 decimale (vincolo XSD) -->
+        <valutazione>4.8</valutazione>
+        <!-- Trama del film, stringa tra 10 e 1000 caratteri (vincolo XSD) -->
+        <trama>Un ladro esperto nel rubare segreti dal profondo dell'inconscio durante il sogno viene incaricato di impiantare un'idea nella mente di un CEO.</trama>
+        <!-- Nome del regista, testo libero -->
+        <regista>Christopher Nolan</regista>
+        <!-- Contenitore degli attori: deve avere almeno un elemento "attore" -->
+        <attori>
+            <!-- Ogni attore ha l'attributo "ruolo": protagonista, secondario o comparsa -->
+            <attore ruolo="protagonista">Leonardo DiCaprio</attore>
+            <attore ruolo="secondario">Joseph Gordon-Levitt</attore>
+            <attore ruolo="secondario">Elliot Page</attore>
+        </attori>
+        <!-- Budget del film in dollari, intero >= 0 (vincolo XSD) -->
+        <budget>160000000</budget>
+        <!-- Incassi totali mondiali in dollari -->
+        <incassi>836848102</incassi>
+        <!-- Classificazione per età: valori consentiti definiti nell'enumerazione XSD -->
+        <classificazione>PG-13</classificazione>
+        <!-- URL del trailer YouTube, tipo anyURI validato dall'XSD -->
+        <trailer>https://www.youtube.com/watch?v=YoHD9XEInc0</trailer>
+        <!-- URL del poster da TMDb, tipo anyURI validato dall'XSD -->
+        <poster>https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg</poster>
+        <!-- ID univoco del film nel database TMDb, usato per le chiamate API -->
+        <tmdb_id>27205</tmdb_id>
+        <!--
+            Contatore visualizzazioni: viene incrementato di 1 dal PHP
+            ogni volta che un utente apre la pagina di questo film.
+            Parte da 0 e cresce nel tempo.
+        -->
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+    <!--
+        ==========================================================
+        FILM F02 — The Dark Knight
+        Genere: Action | Valutazione: 4.9 (alta, > 4)
+        Copre le query: XPath 2 (val > 4)
+        ==========================================================
+    -->
+    <film id="F02">
+        <titolo>The Dark Knight</titolo>
+        <anno>2008</anno>
+        <genere>Action</genere>
+        <durata>152</durata>
+        <valutazione>4.9</valutazione>
+        <trama>Batman affronta il Joker, un criminale anarchico che semina il caos a Gotham City mettendo alla prova i limiti morali dell'eroe.</trama>
+        <regista>Christopher Nolan</regista>
+        <attori>
+            <attore ruolo="protagonista">Christian Bale</attore>
+            <attore ruolo="secondario">Heath Ledger</attore>
+            <attore ruolo="secondario">Aaron Eckhart</attore>
+        </attori>
+        <budget>185000000</budget>
+        <incassi>1004558444</incassi>
+        <classificazione>PG-13</classificazione>
+        <trailer>https://www.youtube.com/watch?v=EXeTwQWrcwY</trailer>
+        <poster>https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg</poster>
+        <tmdb_id>155</tmdb_id>
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+    <!--
+        ==========================================================
+        FILM F03 — Blade Runner 2049
+        Genere: Fantascienza | Valutazione: 4.2 (alta, > 4)
+        Copre le query: XPath 2 (val > 4)
+        ==========================================================
+    -->
+    <film id="F03">
+        <titolo>Blade Runner 2049</titolo>
+        <anno>2017</anno>
+        <genere>Fantascienza</genere>
+        <durata>164</durata>
+        <valutazione>4.2</valutazione>
+        <trama>Un nuovo blade runner scopre un segreto sepolto che minaccia di far sprofondare la società nel caos, spingendolo a cercare Rick Deckard.</trama>
+        <regista>Denis Villeneuve</regista>
+        <attori>
+            <attore ruolo="protagonista">Ryan Gosling</attore>
+            <attore ruolo="secondario">Harrison Ford</attore>
+            <attore ruolo="secondario">Ana de Armas</attore>
+        </attori>
+        <budget>150000000</budget>
+        <incassi>259239658</incassi>
+        <classificazione>R</classificazione>
+        <trailer>https://www.youtube.com/watch?v=gCcx85zbxz4</trailer>
+        <poster>https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzqmEZRQUxREP.jpg</poster>
+        <tmdb_id>335984</tmdb_id>
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+    <!--
+        ==========================================================
+        FILM F04 — Chinatown
+        Genere: Noir | Valutazione: 4.7 (alta, > 4)
+        Copre le query: XPath 1 (Noir), XPath 2 (val > 4)
+        ==========================================================
+    -->
+    <film id="F04">
+        <titolo>Chinatown</titolo>
+        <anno>1974</anno>
+        <genere>Noir</genere>
+        <durata>130</durata>
+        <valutazione>4.7</valutazione>
+        <trama>Un detective privato degli anni '30 indaga su un caso di adulterio che lo trascina in una rete di corruzione e crimini nascosti a Los Angeles.</trama>
+        <regista>Roman Polanski</regista>
+        <attori>
+            <attore ruolo="protagonista">Jack Nicholson</attore>
+            <attore ruolo="secondario">Faye Dunaway</attore>
+            <attore ruolo="secondario">John Huston</attore>
+        </attori>
+        <budget>6000000</budget>
+        <incassi>29200000</incassi>
+        <classificazione>R</classificazione>
+        <trailer>https://www.youtube.com/watch?v=d0G00IEfAkc</trailer>
+        <poster>https://image.tmdb.org/t/p/w500/9ByOrSJSUfAAHOcBP0kD8E4kcCN.jpg</poster>
+        <tmdb_id>1429</tmdb_id>
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+    <!--
+        ==========================================================
+        FILM F05 — Double Indemnity
+        Genere: Noir | Valutazione: 4.6 (alta, > 4)
+        Copre le query: XPath 1 (Noir), XPath 2 (val > 4)
+        ==========================================================
+    -->
+    <film id="F05">
+        <titolo>Double Indemnity</titolo>
+        <anno>1944</anno>
+        <genere>Noir</genere>
+        <durata>107</durata>
+        <valutazione>4.6</valutazione>
+        <trama>Un agente assicurativo viene sedotto da una donna fatale e insieme pianificano l'omicidio del marito per riscuotere una polizza sulla vita.</trama>
+        <regista>Billy Wilder</regista>
+        <attori>
+            <attore ruolo="protagonista">Fred MacMurray</attore>
+            <attore ruolo="secondario">Barbara Stanwyck</attore>
+            <attore ruolo="secondario">Edward G. Robinson</attore>
+        </attori>
+        <budget>980000</budget>
+        <incassi>2500000</incassi>
+        <classificazione>NR</classificazione>
+        <trailer>https://www.youtube.com/watch?v=m_xMHGRQhO4</trailer>
+        <poster>https://image.tmdb.org/t/p/w500/o1YXSWdXqMUQvw5uMX0QIgjyuMB.jpg</poster>
+        <tmdb_id>9443</tmdb_id>
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+    <!--
+        ==========================================================
+        FILM F06 — Mad Max: Fury Road
+        Genere: Action | Valutazione: 4.5 (alta, > 4)
+        Copre le query: XPath 2 (val > 4)
+        ==========================================================
+    -->
+    <film id="F06">
+        <titolo>Mad Max: Fury Road</titolo>
+        <anno>2015</anno>
+        <genere>Action</genere>
+        <durata>120</durata>
+        <valutazione>4.5</valutazione>
+        <trama>In un futuro post-apocalittico, Max si allea con Furiosa per fuggire da un tiranno del deserto attraverso una terra desolata.</trama>
+        <regista>George Miller</regista>
+        <attori>
+            <attore ruolo="protagonista">Tom Hardy</attore>
+            <attore ruolo="protagonista">Charlize Theron</attore>
+            <attore ruolo="secondario">Nicholas Hoult</attore>
+        </attori>
+        <budget>150000000</budget>
+        <incassi>375436237</incassi>
+        <classificazione>R</classificazione>
+        <trailer>https://www.youtube.com/watch?v=hEJnMQG9ev8</trailer>
+        <poster>https://image.tmdb.org/t/p/w500/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg</poster>
+        <tmdb_id>76341</tmdb_id>
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+    <!--
+        ==========================================================
+        FILM F07 — John Wick
+        Genere: Action | Valutazione: 4.3 (alta, > 4)
+        Nota: terzo film Action in ordine di id dopo F02 e F06
+        Copre le query: XPath 2 (val > 4), XPath 5 (durata 3° Action)
+        ==========================================================
+    -->
+    <film id="F07">
+        <titolo>John Wick</titolo>
+        <anno>2014</anno>
+        <genere>Action</genere>
+        <durata>101</durata>
+        <valutazione>4.3</valutazione>
+        <trama>Un ex sicario torna in azione per vendicare la morte del suo cane, l'ultimo dono della moglie scomparsa, scatenando una guerra contro la mafia russa.</trama>
+        <regista>Chad Stahelski</regista>
+        <attori>
+            <attore ruolo="protagonista">Keanu Reeves</attore>
+            <attore ruolo="secondario">Michael Nyqvist</attore>
+            <attore ruolo="secondario">Alfie Allen</attore>
+        </attori>
+        <budget>20000000</budget>
+        <incassi>88767784</incassi>
+        <classificazione>R</classificazione>
+        <trailer>https://www.youtube.com/watch?v=C0BMx-qxsP4</trailer>
+        <poster>https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg</poster>
+        <tmdb_id>245891</tmdb_id>
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+    <!--
+        ==========================================================
+        FILM F08 — Drive
+        Genere: Noir | Valutazione: 4.1 (alta, > 4)
+        Copre le query: XPath 1 (Noir), XPath 2 (val > 4)
+        ==========================================================
+    -->
+    <film id="F08">
+        <titolo>Drive</titolo>
+        <anno>2011</anno>
+        <genere>Noir</genere>
+        <durata>100</durata>
+        <valutazione>4.1</valutazione>
+        <trama>Un autista di Hollywood che di notte fa il pilota per criminali si trova invischiato in una rapina andata storta cercando di proteggere la sua vicina.</trama>
+        <regista>Nicolas Winding Refn</regista>
+        <attori>
+            <attore ruolo="protagonista">Ryan Gosling</attore>
+            <attore ruolo="secondario">Carey Mulligan</attore>
+            <attore ruolo="secondario">Bryan Cranston</attore>
+        </attori>
+        <budget>15000000</budget>
+        <incassi>76184196</incassi>
+        <classificazione>R</classificazione>
+        <trailer>https://www.youtube.com/watch?v=3XGAFbCsFOY</trailer>
+        <poster>https://image.tmdb.org/t/p/w500/602vevIURmpzkMGlAiMZBFgMHSC.jpg</poster>
+        <tmdb_id>56292</tmdb_id>
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+    <!--
+        ==========================================================
+        FILM F09 — Morbius
+        Genere: Action | Valutazione: 2.1 (bassa, < 3)
+        Copre le query: XQuery 3 (val < 3)
+        ==========================================================
+    -->
+    <film id="F09">
+        <titolo>Morbius</titolo>
+        <anno>2022</anno>
+        <genere>Action</genere>
+        <durata>104</durata>
+        <valutazione>2.1</valutazione>
+        <trama>Il biochimico Michael Morbius cerca di curare la sua rara malattia del sangue ma finisce per trasformarsi accidentalmente in un vampiro.</trama>
+        <regista>Daniel Espinosa</regista>
+        <attori>
+            <attore ruolo="protagonista">Jared Leto</attore>
+            <attore ruolo="secondario">Matt Smith</attore>
+            <attore ruolo="secondario">Adria Arjona</attore>
+        </attori>
+        <budget>75000000</budget>
+        <incassi>167500000</incassi>
+        <classificazione>PG-13</classificazione>
+        <trailer>https://www.youtube.com/watch?v=oZ6iiRrz83o</trailer>
+        <poster>https://image.tmdb.org/t/p/w500/6JjfSchsU6daXk2AKX8EEBjO3Fm.jpg</poster>
+        <tmdb_id>526896</tmdb_id>
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+    <!--
+        ==========================================================
+        FILM F10 — Cats
+        Genere: Musicale | Valutazione: 1.4 (bassa, < 3)
+        Copre le query: XQuery 3 (val < 3)
+        ==========================================================
+    -->
+    <film id="F10">
+        <titolo>Cats</titolo>
+        <anno>2019</anno>
+        <genere>Musicale</genere>
+        <durata>110</durata>
+        <valutazione>1.4</valutazione>
+        <trama>Un gruppo di gatti si riunisce ogni anno per la notte del Jellicle Ball, dove uno verrà scelto per salire al paradiso dei gatti e rinascere.</trama>
+        <regista>Tom Hooper</regista>
+        <attori>
+            <attore ruolo="protagonista">Francesca Hayward</attore>
+            <attore ruolo="secondario">Jennifer Hudson</attore>
+            <attore ruolo="secondario">Judi Dench</attore>
+        </attori>
+        <budget>95000000</budget>
+        <incassi>74629712</incassi>
+        <classificazione>PG</classificazione>
+        <trailer>https://www.youtube.com/watch?v=FtSd844cI7U</trailer>
+        <poster>https://image.tmdb.org/t/p/w500/AjFsOSEMBT8CrMHIZzqnFfkZMCP.jpg</poster>
+        <tmdb_id>447277</tmdb_id>
+        <visualizzazioni_totali>0</visualizzazioni_totali>
+    </film>
+
+</catalogo>
