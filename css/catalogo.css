@@ -1,54 +1,82 @@
-main{
+/* =====================================================
+   CATALOGO (index.html)
+   ===================================================== */
+main {
     width: 100vw;
-    height: 100%;
     display: flex;
     flex-direction: column;
+    padding: 20px 0;
 }
-span.titolo{
-    font-weight: bold;
-    text-align: center;
-    margin: 0 20px 20px 20px;
-    font-size: 50px;
-}
-span.regista{
-    font-size: 20px;
-    text-align: center;
-    margin: 0 20px 20px 20px;
-}
-a.element{
+
+/* Card film — link cliccabile */
+a.element {
     border: 2px solid black;
     border-radius: 10px;
-    margin: 20px;
+    margin: 12px 20px;
     display: flex;
     height: auto;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 
     background: linear-gradient(135deg, #d25fff, #b27bfe, #c74ff6, #9550f5);
     background-size: 300% 100%;
     background-position: left center;
-
-    transition-property: background-position;
-    transition-duration: 0.6s;
-    transition-delay: 0.2s;
-    transition-timing-function: ease;
-
-    text-decoration: none;
-    color:  black;
+    transition: background-position 0.6s 0.2s ease;
 }
-div.film{
-    width: 300px;
-    height: 450px;
-    margin: 20px; 
+
+a.element:hover {
+    background-position: right center;
 }
-img{
+
+/* Contenitore immagine poster nella card */
+div.film {
+    width: 200px;
+    min-height: 300px;
+    flex-shrink: 0;
+    margin: 16px;
+}
+
+div.film img {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
+    object-fit: cover;
 }
-div.info{
+
+/* Colonna info a destra del poster nella card */
+div.info {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    padding: 16px;
+    gap: 8px;
+}
+
+span.titolo {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+span.regista {
+    font-size: 18px;
+    opacity: 0.85;
+}
+
+span.genere {
+    font-size: 15px;
+    opacity: 0.75;
+}
+
+span.stelle {
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #5a0099;
+}
+
+span.vis {
+    font-size: 14px;
+    opacity: 0.7;
 }
