@@ -33,6 +33,8 @@ fetch('../xml/catalogo.xml')
             return filmObj;
         });
 
+        localStorage.setItem('elencoFilm', JSON.stringify(elencoFilm));
+
         elencoFilm.forEach(film => {
             const strutturaFilm = `
                 <a href="film.html?id=${encodeURIComponent(film.id)}" class="element">
