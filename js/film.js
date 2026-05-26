@@ -128,10 +128,20 @@ function incrementaVisualizzazioni(filmId) {
     .then(r => r.json())
     .then(data => {
         if (data.successo) {
-            // Aggiorna il numero visualizzazioni già mostrato a schermo
             const el = document.getElementById('num-vis');
             if (el) el.textContent = data.visualizzazioni;
+
+            // ✅ AGGIUNTA: aggiorna anche il localStorage
+            const cached = localStorage.getItem('elencoFilm');
+            if (cached) {
+                const elenco = JSON.parse(cached);
+                const film = elenco.find(f => f.id === filmId);
+                if (film) {
+                    film.visualizzazioni_totali = String(data.visualizzazioni);
+                    localStorage.setItem('elencoFilm', JSON.stringify(elenco));
+                }
+            }
         }
     })
-    .catch(() => {}); // Se fallisce non mostriamo nessun errore all'utente
+    .catch(() => {});
 }

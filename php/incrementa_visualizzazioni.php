@@ -1,5 +1,5 @@
 <?php
-require_once 'controlla_sessione.php';
+require_once 'config.php';  // ← solo config, senza controllo sessione
 header('Content-Type: application/json; charset=utf-8');
 
 $film_id = trim($_POST['film_id'] ?? '');
