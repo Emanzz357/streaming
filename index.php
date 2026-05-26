@@ -1,10 +1,8 @@
 <?php
-// index.php — Punto di ingresso principale
-// Controlla la sessione: se non loggato va al login
 require_once 'php/config.php';
 
 if (empty($_SESSION['utente'])) {
-    header('Location: login.html');
+    header('Location: login.php');
     exit;
 }
 ?>
@@ -22,7 +20,6 @@ if (empty($_SESSION['utente'])) {
 <header>
     <span id="titolo-sito">🎬 Streaming 5BI</span>
     <div class="header-destra">
-        <!-- Mostra il nome dell'utente loggato dalla sessione PHP -->
         <span id="benvenuto">👤 <?= htmlspecialchars($_SESSION['utente']) ?></span>
         <button id="btn-aggiungi" onclick="togglePannelloAggiungi()">+ Aggiungi film</button>
         <a href="php/logout.php" id="btn-logout">Esci</a>

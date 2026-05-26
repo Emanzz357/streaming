@@ -8,22 +8,19 @@ if (empty($titolo)) {
     exit;
 }
 
-// Funzione che chiama un URL con cURL invece di file_get_contents
-// cURL funziona su Altervista, file_get_contents verso URL esterni no
 function chiamaUrl($url) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // restituisce la risposta come stringa
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);            // timeout 10 secondi
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);  // necessario su alcuni hosting
-    $risposta = curl_exec($ch);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $r = curl_exec($ch);
     curl_close($ch);
-    return $risposta;
+    return $r;
 }
 
-$url      = TMDB_BASE_URL . '/search/movie?api_key=' . TMDB_API_KEY . '&query=' . urlencode($titolo) . '&language=it-IT';
-$risposta = chiamaUrl($url);
-$dati     = json_decode($risposta, true);
+$url   = TMDB_BASE_URL . '/search/movie?api_key=' . TMDB_API_KEY . '&query=' . urlencode($titolo) . '&language=it-IT';
+$dati  = json_decode(chiamaUrl($url), true);
 
 if (empty($dati['results'])) {
     echo json_encode(['errore' => 'Nessun film trovato.']);

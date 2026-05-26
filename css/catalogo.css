@@ -1,6 +1,3 @@
-/* =====================================================
-   CATALOGO (index.html)
-   ===================================================== */
 main {
     width: 100vw;
     display: flex;
@@ -8,7 +5,6 @@ main {
     padding: 20px 0;
 }
 
-/* Card film — link cliccabile */
 a.element {
     border: 2px solid black;
     border-radius: 10px;
@@ -18,33 +14,24 @@ a.element {
     cursor: pointer;
     text-decoration: none;
     color: black;
-
     background: linear-gradient(135deg, #d25fff, #b27bfe, #c74ff6, #9550f5);
     background-size: 300% 100%;
     background-position: left center;
     transition: background-position 0.6s 0.2s ease;
 }
+a.element:hover { background-position: right center; }
 
-a.element:hover {
-    background-position: right center;
-}
-
-/* Contenitore immagine poster nella card */
 div.film {
     width: 200px;
     min-height: 300px;
     flex-shrink: 0;
     margin: 16px;
 }
-
 div.film img {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    object-fit: cover;
+    width: 100%; height: 100%;
+    border-radius: 8px; object-fit: cover;
 }
 
-/* Colonna info a destra del poster nella card */
 div.info {
     flex-grow: 1;
     display: flex;
@@ -55,28 +42,8 @@ div.info {
     gap: 8px;
 }
 
-span.titolo {
-    font-weight: bold;
-    font-size: 28px;
-}
-
-span.regista {
-    font-size: 18px;
-    opacity: 0.85;
-}
-
-span.genere {
-    font-size: 15px;
-    opacity: 0.75;
-}
-
-span.stelle {
-    font-size: 22px;
-    letter-spacing: 2px;
-    color: #5a0099;
-}
-
-span.vis {
-    font-size: 14px;
-    opacity: 0.7;
-}
+span.titolo  { font-weight: bold; font-size: 28px; }
+span.regista { font-size: 18px; opacity: 0.85; }
+span.genere  { font-size: 15px; opacity: 0.75; }
+span.stelle  { font-size: 22px; letter-spacing: 2px; color: #5a0099; }
+span.vis     { font-size: 14px; opacity: 0.7; }

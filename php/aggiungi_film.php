@@ -8,7 +8,6 @@ if ($tmdb_id <= 0) {
     exit;
 }
 
-// cURL per chiamate esterne — funziona su Altervista
 function chiamaUrl($url) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -20,11 +19,9 @@ function chiamaUrl($url) {
     return $r;
 }
 
-// Chiama un endpoint TMDb e restituisce array PHP
 function tmdb($endpoint) {
     $url = TMDB_BASE_URL . $endpoint . '?api_key=' . TMDB_API_KEY . '&language=it-IT';
-    $r   = chiamaUrl($url);
-    return $r ? json_decode($r, true) : null;
+    return json_decode(chiamaUrl($url), true);
 }
 
 $d = tmdb("/movie/{$tmdb_id}");
@@ -44,17 +41,17 @@ if (!empty($xml->xpath("//film[tmdb_id='{$tmdb_id}']"))) {
 
 $titolo      = $d['title'] ?? $d['original_title'];
 $anno        = (int)substr($d['release_date'] ?? '0', 0, 4);
-$genere      = $d['genres'][0]['name']  ?? 'N/D';
-$durata      = (int)($d['runtime']      ?? 0);
-$trama       = $d['overview']           ?? 'N/D';
-$budget      = (int)($d['budget']       ?? 0);
-$incassi     = (int)($d['revenue']      ?? 0);
+$genere      = $d['genres'][0]['name'] ?? 'N/D';
+$durata      = (int)($d['runtime']     ?? 0);
+$trama       = $d['overview']          ?? 'N/D';
+$budget      = (int)($d['budget']      ?? 0);
+$incassi     = (int)($d['revenue']     ?? 0);
 $poster      = !empty($d['poster_path']) ? TMDB_IMAGE_BASE . $d['poster_path'] : '';
 $valutazione = round((float)($d['vote_average'] ?? 0) / 2, 1);
 
 $regista = 'N/D';
-foreach (($c['crew'] ?? []) as $membro) {
-    if ($membro['job'] === 'Director') { $regista = $membro['name']; break; }
+foreach (($c['crew'] ?? []) as $m) {
+    if ($m['job'] === 'Director') { $regista = $m['name']; break; }
 }
 
 $attori  = array_slice(array_column($c['cast'] ?? [], 'name'), 0, 3);
@@ -76,7 +73,7 @@ $nuovo_id = 'F' . sprintf('%02d', $max + 1);
 
 $dom = new DOMDocument('1.0', 'UTF-8');
 $dom->preserveWhiteSpace = false;
-$dom->formatOutput       = true;
+$dom->formatOutput = true;
 $dom->load(XML_CATALOGO);
 
 function el($dom, $tag, $val) {

@@ -1,10 +1,8 @@
 <?php
-// film.php — Pagina dettaglio film
-// Controlla la sessione: se non loggato va al login
 require_once 'php/config.php';
 
 if (empty($_SESSION['utente'])) {
-    header('Location: login.html');
+    header('Location: login.php');
     exit;
 }
 ?>

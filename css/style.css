@@ -1,8 +1,5 @@
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-/* Body base - senza flex, altrimenti rompe il layout del catalogo */
 body {
     overflow-x: hidden;
     margin: 0;
@@ -13,14 +10,14 @@ body {
     color: black;
 }
 
-/* Solo il body della pagina login viene centrato */
+/* Solo la pagina login centra il contenuto */
 body.login-page {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* ===================== HEADER ===================== */
+/* ===== HEADER ===== */
 header {
     position: sticky;
     top: 0;
@@ -29,21 +26,14 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 12px 24px;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0,0,0,0.25);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
-#titolo-sito {
-    font-size: 22px;
-    font-weight: bold;
-}
+#titolo-sito { font-size: 22px; font-weight: bold; }
 
-.header-destra {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
+.header-destra { display: flex; align-items: center; gap: 14px; }
 
 #btn-aggiungi {
     cursor: pointer;
@@ -69,86 +59,49 @@ header {
 }
 #btn-logout:hover, #btn-torna:hover { background: rgba(0,0,0,0.15); }
 
-/* ================ PANNELLO AGGIUNGI ================ */
+/* ===== PANNELLO AGGIUNGI ===== */
 #pannello-aggiungi {
     background: rgba(255,255,255,0.3);
     backdrop-filter: blur(6px);
     border-bottom: 2px solid black;
     padding: 20px 24px;
 }
-
-#form-cerca {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 16px;
-}
-
+#form-cerca { display: flex; gap: 10px; margin-bottom: 16px; }
 #input-titolo {
-    flex: 1;
-    height: 44px;
-    padding: 0 16px;
-    border: 2px solid black;
-    border-radius: 8px;
-    background: transparent;
-    font-size: 15px;
+    flex: 1; height: 44px; padding: 0 16px;
+    border: 2px solid black; border-radius: 8px;
+    background: transparent; font-size: 15px;
 }
-
 #form-cerca button {
-    height: 44px;
-    padding: 0 20px;
-    border: 2px solid black;
-    border-radius: 8px;
-    background: transparent;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
+    height: 44px; padding: 0 20px;
+    border: 2px solid black; border-radius: 8px;
+    background: transparent; font-size: 14px;
+    font-weight: bold; cursor: pointer;
     transition: background 0.3s;
 }
 #form-cerca button:hover { background: rgba(0,0,0,0.15); }
 
-#risultati-ricerca {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-}
+#risultati-ricerca { display: flex; flex-wrap: wrap; gap: 14px; }
 
 .card-risultato {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex; align-items: center; gap: 12px;
     background: rgba(255,255,255,0.4);
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 10px;
-    width: 280px;
+    border: 2px solid black; border-radius: 10px;
+    padding: 10px; width: 280px;
 }
-.card-risultato img {
-    width: 60px;
-    height: 90px;
-    border-radius: 6px;
-    object-fit: cover;
-}
-.card-risultato-info {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 14px;
-}
+.card-risultato img { width: 60px; height: 90px; border-radius: 6px; object-fit: cover; }
+.card-risultato-info { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
 .card-risultato button {
-    padding: 6px 12px;
-    border: 2px solid black;
-    border-radius: 6px;
-    background: transparent;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
+    padding: 6px 12px; border: 2px solid black;
+    border-radius: 6px; background: transparent;
+    font-weight: bold; cursor: pointer; transition: background 0.3s;
 }
 .card-risultato button:hover { background: rgba(0,0,0,0.15); }
 
 .msg-errore { color: #c0392b; font-weight: bold; }
 .msg-ok     { color: #1a5c1a; font-weight: bold; }
 
-/* ==================== LOGIN ======================== */
+/* ===== LOGIN ===== */
 form {
     width: 500px;
     padding: 40px;
@@ -160,27 +113,28 @@ form {
     border-radius: 10px;
     background: rgba(255,255,255,0.15);
 }
+form h1 { margin-bottom: 10px; }
 
-form h1 { margin-bottom: 20px; }
+/* Messaggio errore login */
+.errore-login {
+    color: red;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    text-align: center;
+}
 
 input {
-    margin: 10px;
-    height: 60px;
-    width: 400px;
-    border: 2px solid black;
-    border-radius: 10px;
-    font-size: 15px;
-    color: black;
-    background-color: transparent;
+    margin: 10px; height: 60px; width: 400px;
+    border: 2px solid black; border-radius: 10px;
+    font-size: 15px; color: black; background-color: transparent;
 }
 input[type="text"], input[type="password"] { padding-left: 20px; }
 input[type="submit"] {
-    cursor: pointer;
-    font-weight: bold;
+    cursor: pointer; font-weight: bold;
     background: linear-gradient(135deg, #d25fff, #b27bfe, #c74ff6, #9550f5);
-    background-size: 300% 100%;
-    background-position: left center;
+    background-size: 300% 100%; background-position: left center;
     transition: background-position 0.6s 0.2s ease;
 }
 input[type="submit"]:hover { background-position: right center; }
-::placeholder { color: #000000; opacity: 1; }
+::placeholder { color: #000; opacity: 1; }

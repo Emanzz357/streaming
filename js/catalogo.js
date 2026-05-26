@@ -32,8 +32,7 @@ fetch('xml/catalogo.xml')
             main.innerHTML += `
                 <a href="film.php?id=${encodeURIComponent(film.id)}" class="element">
                     <div class="film">
-                        <img src="${film.poster || ''}" alt="${film.titolo}"
-                             onerror="this.style.background='#ccc'; this.style.display='flex';">
+                        <img src="${film.poster || ''}" alt="${film.titolo}">
                     </div>
                     <div class="info">
                         <span class="titolo">${film.titolo} (${film.anno})</span>
@@ -48,13 +47,13 @@ fetch('xml/catalogo.xml')
     .catch(err => console.error("Errore:", err));
 
 function generaStelle(val) {
-    const intere = Math.round(val);
-    return '★'.repeat(intere) + '☆'.repeat(5 - intere) + ` (${val})`;
+    const n = Math.round(val);
+    return '★'.repeat(n) + '☆'.repeat(5 - n) + ` (${val})`;
 }
 
 function togglePannelloAggiungi() {
-    const pannello = document.getElementById('pannello-aggiungi');
-    pannello.style.display = pannello.style.display === 'none' ? 'block' : 'none';
+    const p = document.getElementById('pannello-aggiungi');
+    p.style.display = p.style.display === 'none' ? 'block' : 'none';
     document.getElementById('risultati-ricerca').innerHTML = '';
     document.getElementById('input-titolo').value = '';
 }
@@ -62,32 +61,25 @@ function togglePannelloAggiungi() {
 function cercaFilm() {
     const titolo = document.getElementById('input-titolo').value.trim();
     if (!titolo) return;
-
     const div = document.getElementById('risultati-ricerca');
     div.innerHTML = '<p>Ricerca in corso...</p>';
 
     fetch('php/cerca_film.php', {
-        method:  'POST',
+        method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body:    'titolo=' + encodeURIComponent(titolo)
+        body: 'titolo=' + encodeURIComponent(titolo)
     })
     .then(r => r.json())
     .then(data => {
-        if (data.errore) {
-            div.innerHTML = `<p class="msg-errore">${data.errore}</p>`;
-            return;
-        }
+        if (data.errore) { div.innerHTML = `<p class="msg-errore">${data.errore}</p>`; return; }
         div.innerHTML = data.risultati.map(f => `
             <div class="card-risultato">
                 <img src="${f.poster || ''}" alt="${f.titolo}">
                 <div class="card-risultato-info">
                     <strong>${f.titolo}</strong> (${f.anno})
-                    <button onclick="aggiungiFilm(${f.tmdb_id}, '${f.titolo.replace(/'/g, "\\'")}')">
-                        + Aggiungi
-                    </button>
+                    <button onclick="aggiungiFilm(${f.tmdb_id}, '${f.titolo.replace(/'/g, "\\'")}')">+ Aggiungi</button>
                 </div>
-            </div>
-        `).join('');
+            </div>`).join('');
     })
     .catch(() => div.innerHTML = '<p class="msg-errore">Errore di connessione.</p>');
 }
@@ -97,17 +89,14 @@ function aggiungiFilm(tmdb_id, titolo) {
     div.innerHTML = `<p>Aggiunta di "${titolo}" in corso...</p>`;
 
     fetch('php/aggiungi_film.php', {
-        method:  'POST',
+        method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body:    'tmdb_id=' + tmdb_id
+        body: 'tmdb_id=' + tmdb_id
     })
     .then(r => r.json())
     .then(data => {
-        if (data.errore) {
-            div.innerHTML = `<p class="msg-errore">${data.errore}</p>`;
-            return;
-        }
-        div.innerHTML = `<p class="msg-ok">✓ "${data.titolo}" aggiunto con successo!</p>`;
+        if (data.errore) { div.innerHTML = `<p class="msg-errore">${data.errore}</p>`; return; }
+        div.innerHTML = `<p class="msg-ok">✓ "${data.titolo}" aggiunto!</p>`;
         setTimeout(() => location.reload(), 1200);
     })
     .catch(() => div.innerHTML = '<p class="msg-errore">Errore di connessione.</p>');
