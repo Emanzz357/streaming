@@ -1,3 +1,13 @@
+<?php
+// index.php — Punto di ingresso principale
+// Controlla la sessione: se non loggato va al login
+require_once 'php/config.php';
+
+if (empty($_SESSION['utente'])) {
+    header('Location: login.html');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -9,30 +19,25 @@
 </head>
 <body>
 
-<!-- HEADER con nome utente e pulsanti -->
 <header>
     <span id="titolo-sito">🎬 Streaming 5BI</span>
     <div class="header-destra">
-        <span id="benvenuto"></span>
-        <!-- Apre il pannello di ricerca TMDb -->
+        <!-- Mostra il nome dell'utente loggato dalla sessione PHP -->
+        <span id="benvenuto">👤 <?= htmlspecialchars($_SESSION['utente']) ?></span>
         <button id="btn-aggiungi" onclick="togglePannelloAggiungi()">+ Aggiungi film</button>
-        <!-- Chiama logout.php che distrugge la sessione -->
         <a href="php/logout.php" id="btn-logout">Esci</a>
     </div>
 </header>
 
-<!-- PANNELLO AGGIUNGI FILM (nascosto di default) -->
 <div id="pannello-aggiungi" style="display:none;">
     <div id="form-cerca">
         <input type="text" id="input-titolo" placeholder="Cerca un film su TMDb...">
         <button onclick="cercaFilm()">Cerca</button>
         <button onclick="togglePannelloAggiungi()">✕</button>
     </div>
-    <!-- Qui appaiono i risultati della ricerca TMDb -->
     <div id="risultati-ricerca"></div>
 </div>
 
-<!-- CATALOGO: le card dei film vengono inserite qui da catalogo.js -->
 <main></main>
 
 </body>

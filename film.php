@@ -1,3 +1,13 @@
+<?php
+// film.php — Pagina dettaglio film
+// Controlla la sessione: se non loggato va al login
+require_once 'php/config.php';
+
+if (empty($_SESSION['utente'])) {
+    header('Location: login.html');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -9,43 +19,28 @@
 </head>
 <body>
 
-<!-- HEADER con pulsante torna al catalogo -->
 <header>
-    <a href="index.html" id="btn-torna">← Catalogo</a>
+    <a href="index.php" id="btn-torna">← Catalogo</a>
     <span id="titolo-sito">🎬 Streaming 5BI</span>
     <a href="php/logout.php" id="btn-logout">Esci</a>
 </header>
 
 <main>
-    <!-- Poster del film -->
     <img id="poster" src="" alt="Poster">
-
-    <!-- Tutte le informazioni del film -->
     <div class="info">
         <h1 id="titolo"></h1>
         <h2 id="regista"></h2>
-
         <p id="genere-durata"></p>
         <p id="valutazione"></p>
         <p id="budget-incassi"></p>
         <p id="classificazione"></p>
-
-        <!-- Lista attori generata da film.js -->
         <div id="attori"></div>
-
         <p id="trama"></p>
-
-        <!-- Contatore visualizzazioni aggiornato in tempo reale -->
         <p id="visualizzazioni"></p>
-
-        <!-- Banner trailer: iframe YouTube, nascosto finché non c'è un trailer -->
         <div id="trailer-container" style="display:none;">
             <h3>Trailer</h3>
-            <!-- Il src viene impostato da film.js con l'URL embed di YouTube -->
-            <iframe id="trailer"
-                    width="560" height="315"
-                    frameborder="0"
-                    allowfullscreen
+            <iframe id="trailer" width="560" height="315"
+                    frameborder="0" allowfullscreen
                     allow="autoplay; encrypted-media">
             </iframe>
         </div>

@@ -1,0 +1,15 @@
+# .htaccess — Configurazione Apache per Altervista
+# Va messo nella cartella public_html (radice del sito)
+
+# Abilita la riscrittura degli URL
+Options -Indexes
+RewriteEngine On
+
+# Se si accede a index.html, reindirizza a index.php
+RewriteRule ^index\.html$ index.php [R=301,L]
+
+# Se si accede a film.html, reindirizza a film.php
+RewriteRule ^film\.html$ film.php [R=301,L]
+
+# Pagina di errore 403 e 404 personalizzata (opzionale)
+# ErrorDocument 404 /login.html

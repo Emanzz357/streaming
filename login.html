@@ -2,14 +2,11 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Streaming5BI</title>
+    <title>Streaming5BI — Login</title>
     <link rel="stylesheet" href="css/style.css">
     <script>
-        // Mostra eventuale messaggio di errore passato via URL
-        // es: login.html?errore=Email+o+password+errati
         window.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const errore = params.get('errore');
+            const errore = new URLSearchParams(window.location.search).get('errore');
             if (errore) {
                 const el = document.getElementById('errore');
                 el.textContent = errore;
@@ -18,16 +15,10 @@
         });
     </script>
 </head>
-<body>
-    <!-- action punta al PHP che gestisce il login -->
-    <!-- method="post" invia i dati in modo sicuro (non nell'URL) -->
+<body class="login-page">
     <form action="php/login.php" method="post">
         <h1>Streaming 5BI</h1>
-
-        <!-- Messaggio di errore: nascosto di default, mostrato da JS se c'è ?errore= nell'URL -->
         <p id="errore" style="display:none; color:red; margin:0 0 10px 0;"></p>
-
-        <!-- name="mail" deve corrispondere a $_POST['mail'] in login.php -->
         <input class="text" type="text"     name="mail"     placeholder="e-mail">
         <input class="text" type="password" name="password" placeholder="Password">
         <input class="submit" type="submit" value="Accedi">

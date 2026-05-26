@@ -1,44 +1,42 @@
-/* =====================================================
-   RESET E BASE
-   ===================================================== */
 * {
     box-sizing: border-box;
 }
 
+/* Body base - senza flex, altrimenti rompe il layout del catalogo */
 body {
     overflow-x: hidden;
     margin: 0;
     min-height: 100vh;
-
     background: linear-gradient(135deg, #d25fff, #b27bfe);
     background-attachment: fixed;
-
     font-family: Arial, Helvetica, sans-serif;
     color: black;
 }
 
-/* =====================================================
-   HEADER — appare su index.html e film.html
-   ===================================================== */
+/* Solo il body della pagina login viene centrato */
+body.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===================== HEADER ===================== */
 header {
-    position: sticky;           /* Rimane in cima mentre scorri */
+    position: sticky;
     top: 0;
     z-index: 100;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 12px 24px;
     background: rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(8px); /* Effetto vetro sull'header */
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
 #titolo-sito {
     font-size: 22px;
     font-weight: bold;
-    color: black;
 }
 
 .header-destra {
@@ -47,11 +45,6 @@ header {
     gap: 14px;
 }
 
-#benvenuto {
-    font-size: 14px;
-}
-
-/* Pulsante "Aggiungi film" nell'header */
 #btn-aggiungi {
     cursor: pointer;
     padding: 8px 18px;
@@ -62,11 +55,8 @@ header {
     font-weight: bold;
     transition: background 0.3s;
 }
-#btn-aggiungi:hover {
-    background: rgba(0,0,0,0.15);
-}
+#btn-aggiungi:hover { background: rgba(0,0,0,0.15); }
 
-/* Link Esci e ← Catalogo */
 #btn-logout, #btn-torna {
     text-decoration: none;
     color: black;
@@ -77,13 +67,9 @@ header {
     border-radius: 8px;
     transition: background 0.3s;
 }
-#btn-logout:hover, #btn-torna:hover {
-    background: rgba(0,0,0,0.15);
-}
+#btn-logout:hover, #btn-torna:hover { background: rgba(0,0,0,0.15); }
 
-/* =====================================================
-   PANNELLO AGGIUNGI FILM (index.html)
-   ===================================================== */
+/* ================ PANNELLO AGGIUNGI ================ */
 #pannello-aggiungi {
     background: rgba(255,255,255,0.3);
     backdrop-filter: blur(6px);
@@ -118,11 +104,8 @@ header {
     cursor: pointer;
     transition: background 0.3s;
 }
-#form-cerca button:hover {
-    background: rgba(0,0,0,0.15);
-}
+#form-cerca button:hover { background: rgba(0,0,0,0.15); }
 
-/* Griglia risultati ricerca TMDb */
 #risultati-ricerca {
     display: flex;
     flex-wrap: wrap;
@@ -139,21 +122,18 @@ header {
     padding: 10px;
     width: 280px;
 }
-
 .card-risultato img {
     width: 60px;
     height: 90px;
     border-radius: 6px;
     object-fit: cover;
 }
-
 .card-risultato-info {
     display: flex;
     flex-direction: column;
     gap: 8px;
     font-size: 14px;
 }
-
 .card-risultato button {
     padding: 6px 12px;
     border: 2px solid black;
@@ -163,42 +143,25 @@ header {
     cursor: pointer;
     transition: background 0.3s;
 }
-.card-risultato button:hover {
-    background: rgba(0,0,0,0.15);
-}
+.card-risultato button:hover { background: rgba(0,0,0,0.15); }
 
-/* Messaggi di stato nella ricerca */
 .msg-errore { color: #c0392b; font-weight: bold; }
 .msg-ok     { color: #1a5c1a; font-weight: bold; }
 
-/* =====================================================
-   LOGIN PAGE (login.html)
-   ===================================================== */
-/* Il body del login è centrato diversamente dal catalogo */
-body.login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+/* ==================== LOGIN ======================== */
 form {
     width: 500px;
     padding: 40px;
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 0;
-
     border: 2px solid black;
     border-radius: 10px;
     background: rgba(255,255,255,0.15);
 }
 
-form h1 {
-    margin-bottom: 20px;
-}
+form h1 { margin-bottom: 20px; }
 
 input {
     margin: 10px;
@@ -210,12 +173,7 @@ input {
     color: black;
     background-color: transparent;
 }
-
-input[type="text"],
-input[type="password"] {
-    padding-left: 20px;
-}
-
+input[type="text"], input[type="password"] { padding-left: 20px; }
 input[type="submit"] {
     cursor: pointer;
     font-weight: bold;
@@ -224,12 +182,5 @@ input[type="submit"] {
     background-position: left center;
     transition: background-position 0.6s 0.2s ease;
 }
-
-input[type="submit"]:hover {
-    background-position: right center;
-}
-
-::placeholder {
-    color: #000000;
-    opacity: 1;
-}
+input[type="submit"]:hover { background-position: right center; }
+::placeholder { color: #000000; opacity: 1; }
