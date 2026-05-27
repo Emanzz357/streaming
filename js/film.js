@@ -1,6 +1,6 @@
 const filmId = new URLSearchParams(window.location.search).get('id');
 
-fetch('xml/catalogo.xml')
+fetch('xml/catalogo.xml?t=' + Date.now())
     .then(r => r.text())
     .then(xmlText => {
         const doc  = new DOMParser().parseFromString(xmlText, "text/xml");

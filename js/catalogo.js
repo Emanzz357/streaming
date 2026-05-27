@@ -1,7 +1,7 @@
 let elencoFilm = [];
 const main = document.querySelector("main");
 
-fetch('xml/catalogo.xml')
+fetch('xml/catalogo.xml?t=' + Date.now())
     .then(res => {
         if (!res.ok) throw new Error("File XML non trovato");
         return res.text();
@@ -97,7 +97,7 @@ function aggiungiFilm(tmdb_id, titolo) {
     .then(data => {
         if (data.errore) { div.innerHTML = `<p class="msg-errore">${data.errore}</p>`; return; }
         div.innerHTML = `<p class="msg-ok">✓ "${data.titolo}" aggiunto!</p>`;
-        setTimeout(() => location.reload(), 1200);
+        setTimeout(() => window.location.href = 'index.php?t=' + Date.now(), 1200);
     })
     .catch(() => div.innerHTML = '<p class="msg-errore">Errore di connessione.</p>');
 }
